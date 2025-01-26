@@ -1,0 +1,10 @@
+
+.env
+*.pyc
+saved_pos.yaml
+/logs
+tmp_token
+*.json
+/build
+/test_logs
+copy_trade.spec
