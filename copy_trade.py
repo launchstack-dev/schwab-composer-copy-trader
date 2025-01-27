@@ -46,6 +46,7 @@ if __name__ == '__main__':
                     logger.error(f"Account Num: {account_num} is in being skipped due to failure")
                     continue
                 try:
+                    print(f"Buying Tickers in Account Num: {account_num}")
                     schwab_conn.buy_tickers_for_the_day(account_num, schwab_conn.breakdown_account_by_quotes(account_num, get_alpaca_percentages()["percentages"]))
                 except Exception as e:
                     logger.error(f"Account Num: {account_num} Error: {e}")

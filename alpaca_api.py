@@ -62,6 +62,7 @@ def check_for_change():
     if not os.path.exists(saved_pos_file):
         with open(saved_pos_file, 'w') as file:
             yaml.dump(cur_positions, file, default_flow_style=False)
+        return True
     else:
         with open(saved_pos_file, 'r') as file:
             saved_pos = yaml.safe_load(file)
