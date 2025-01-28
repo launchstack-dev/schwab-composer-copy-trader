@@ -8,3 +8,4 @@ tmp_token
 /build
 /test_logs
 copy_trade.spec
+*.exe

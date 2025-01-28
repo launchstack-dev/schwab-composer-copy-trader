@@ -41,7 +41,7 @@ if __name__ == '__main__':
         # We are just going to check for changes and then copy trade instead of
         if check_for_change():
             logger.info("\n=== Change Detected ===\n")
-            for account_num in os.getenv('SCHWAB_ACCOUNT_NUMS').split(","):
+            for account_num in os.getenv('SCHWAB_ACCOUNT_NUMS').replace(" ", "").split(","):
                 if account_num in failed_account:
                     logger.error(f"Account Num: {account_num} is in being skipped due to failure")
                     continue
