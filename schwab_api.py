@@ -1,6 +1,6 @@
 from schwab.orders.equities import equity_buy_market, equity_sell_market
 from logger_config import setup_logger
-from schwab.auth import easy_client
+from schwab.auth import easy_client, client_from_manual_flow, client_from_token_file
 from dotenv import load_dotenv
 from schwab.utils import Utils
 from pprint import pformat
@@ -60,10 +60,16 @@ def create_client():
     Returns:
         Schwab Client
     """
-    return easy_client(token_path=os.getenv("TMP_TOKEN_PATH"), 
-                       api_key=os.getenv("SCWAHB_API_KEY"),
-                       app_secret=os.getenv("SCWAHB_SECRET_KEY"),
-                       callback_url=os.getenv("CALLBACK_URL"))
+    if os.getenv("HOSTING_ENV").lower().strip() == "cloud":
+        if os.path.exists(os.getenv("TMP_TOKEN_PATH")):
+            # If we have a token lets use it
+            return client_from_token_file(token_path=os.getenv("TMP_TOKEN_PATH"), 
+                                        api_key=os.getenv("SCWAHB_API_KEY"),
+                                        app_secret=os.getenv("SCWAHB_SECRET_KEY"))
+        else:
+            return client_from_manual_flow(api_key=os.getenv("SCWAHB_API_KEY"), app_secret=os.getenv("SCWAHB_SECRET_KEY"),callback_url=os.getenv("CALLBACK_URL"), token_path=os.getenv("TMP_TOKEN_PATH"))
+    else:
+        return easy_client(api_key=os.getenv("SCWAHB_API_KEY"), app_secret=os.getenv("SCWAHB_SECRET_KEY"),callback_url=os.getenv("CALLBACK_URL"), token_path=os.getenv("TMP_TOKEN_PATH"))
     
 def read_in_accounts() -> set:
     """Grabs the accounts from the env
@@ -97,10 +103,10 @@ class schwab_client:
         resp = self.c.get_account_numbers()
         
         if resp.status_code == httpx.codes.OK:
-            logger.error("!!! Token was found to be active !!!")
+            logger.info("-- Token was found to be active ---")
             return True
         
-        logger.info("--- Token was found to be not active ---")
+        logger.info("!!! Token was found to be not active !!!")
         return False
 
     def access_to_expected_accounts(self) -> bool:

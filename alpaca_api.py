@@ -23,20 +23,23 @@ def get_alpaca_percentages():
     """
     trading_client = TradingClient(os.getenv('ALPACA_API_KEY'), os.getenv('ALPACA_SECRET_KEY'), paper=PAPER)
     holdings = trading_client.get_all_positions()
+    # TODO: Need to get the quantity * price to get the total value of the asset
+    # Then need to get the overall value of the portfolio to figure out actual % of the portfolio
     # Collect the Assets
     assets = {}
-    total_per = 0
     for asset in holdings:
         rounded_qty = round(float(asset.qty), 2)
-        total_per += rounded_qty
         assets.update({asset.symbol: {"rounded_qty": rounded_qty,
-                                      "qty": float(asset.qty)}})
+                                      "qty": float(asset.qty),
+                                      "current_price": float(asset.current_price),
+                                      "market_value": float(asset.current_price) * float(asset.qty)}})
     
+    portfolio_total = round(sum([asset["market_value"] for asset in assets.values()]), 2)
     # Convert to percentages
     percentages = {}
     per_checksum = 0
     for asset, qty in assets.items():
-        amount = round((qty["rounded_qty"]/total_per)*100, 2)
+        amount = round((qty["market_value"]/portfolio_total)*100, 2)
         per_checksum += amount
         percentages.update({asset: amount})
 
@@ -47,7 +50,8 @@ def get_alpaca_percentages():
     percentages.update({"checksum": per_checksum})
 
     return {"percentages": percentages,
-            "assets": assets}
+            "assets": assets,
+            "portfolio_total": portfolio_total} 
 
 def check_for_change():
     """Handles checking if a change has occured compared

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import time
 import os
 
-__version__ = "2025.1.0"
+__version__ = "2025.1.1"
 
 logger = setup_logger('copy_trade', 'logs/copy_trade.log')
 
