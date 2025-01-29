@@ -52,6 +52,8 @@ match os.getenv("SHARE_ROUND").lower():
         raise Exception("Invalid Share Round")
 # Sell timeout
 SELL_TIMEOUT = int(os.getenv("SELL_TIMEOUT"))
+# Order timeout
+ORDER_WAIT = int(os.getenv("ORDER_WAIT"))
 # --------------------------------------
 
 def create_client():
@@ -446,7 +448,12 @@ class schwab_client:
                     count -= 1
                     logger.info("Checking for sell orders completion")
                     time.sleep(1)
-        
+            logger.info("--- Sell Orders Completed ---")
+            
+            logger.info(f"--- Going to sleep for {ORDER_WAIT} between orders ---")
+            time.sleep(ORDER_WAIT)
+            
+            logger.info("--- Starting Buy Orders ---")
             buy_orders = self.buy_tickers(account_num, added_keys)
             if buy_orders is not None:
                 logger.info(f"!!! Buy Order IDs: {pformat(buy_orders)} !!!")

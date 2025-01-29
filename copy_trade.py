@@ -17,6 +17,8 @@ load_dotenv()
 PERIOD = int(os.getenv('PERIOD'))
 # How many times we want to retry actions
 RETRY = int(os.getenv('RETRY'))
+# How long we want to wait after changes are detected
+CHANGE_WAIT = int(os.getenv('CHANGE_WAIT'))
 # --------------------------------------
 
 # How we run the copy trade method
@@ -41,6 +43,9 @@ if __name__ == '__main__':
         # We are just going to check for changes and then copy trade instead of
         if check_for_change():
             logger.info("\n=== Change Detected ===\n")
+            logger.info(f"Waiting for {CHANGE_WAIT} seconds before executing trades")
+            print(f"Waiting for {CHANGE_WAIT} seconds before executing trades")
+            time.sleep(CHANGE_WAIT)
             for account_num in os.getenv('SCHWAB_ACCOUNT_NUMS').replace(" ", "").split(","):
                 if account_num in failed_account:
                     logger.error(f"Account Num: {account_num} is in being skipped due to failure")
@@ -69,7 +74,6 @@ if __name__ == '__main__':
             
             # Record the changes locally for tomorrow
             save_changes()
-            
         print("Awaiting Changes")
         time.sleep(PERIOD)
             

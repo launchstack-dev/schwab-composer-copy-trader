@@ -71,9 +71,13 @@ def check_for_change():
         with open(saved_pos_file, 'r') as file:
             saved_pos = yaml.safe_load(file)
         
-        if cur_positions != saved_pos:
-            logger.info(f"\n===\n!!! Changes Detected !!!\nOld Holdings: \n{pformat(saved_pos)}\nNew Holdings: \n{pformat(cur_positions)}\n===")
-            return True
+        for asset, qty in cur_positions["assets"].items():
+            if asset not in saved_pos["assets"]:
+                logger.info(f"\n===\n!!! Changes Detected !!!\nOld Holdings: \n{pformat(saved_pos)}\nNew Holdings: \n{pformat(cur_positions)}\n===")
+                return True
+            if qty["qty"] != saved_pos["assets"][asset]["qty"]:
+                logger.info(f"\n===\n!!! Changes Detected !!!\nOld Holdings: \n{pformat(saved_pos)}\nNew Holdings: \n{pformat(cur_positions)}\n===")
+                return True
         
     return False
 
@@ -87,3 +91,4 @@ def save_changes():
     
 if __name__ == '__main__':
     pass
+    # print(check_for_change())
