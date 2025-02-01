@@ -412,16 +412,15 @@ class schwab_client:
             if new > old:
                 logger.info(f"Adding {key} to added keys old holdings: {old} new holdings: {new}")
                 if added_keys.get(key) is not None:
-                    added_keys[key] += 1
+                    added_keys[key] += new - old
                 else:
-                    added_keys[key] = 1
-                pass
+                    added_keys[key] = new - old
             elif new < old:
                 logger.info(f"Adding {key} to removed keys old holdings: {old} new holdings: {new}")
                 if removed_keys.get(key) is not None:
-                    removed_keys[key] += 1
+                    removed_keys[key] += old - new
                 else:
-                    removed_keys[key] = 1
+                    removed_keys[key] = old - new
         
         adjusted_differences = {
             "added": added_keys,
