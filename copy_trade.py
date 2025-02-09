@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import time
 import os
 
-__version__ = "2025.1.2"
+__version__ = "2025.1.4"
 
 logger = setup_logger('copy_trade', 'logs/copy_trade.log')
 
@@ -24,6 +24,7 @@ CHANGE_WAIT = int(os.getenv('CHANGE_WAIT'))
 # How we run the copy trade method
 if __name__ == '__main__':
     print(f"Version: {__version__}")
+    print(f"Mode: {os.getenv("MODE").lower()}")
     schwab_conn = schwab_client()
     failed_account = set()
     while True:

@@ -8,7 +8,8 @@ import os
 # Load environment variables from .env file
 load_dotenv()
 
-PAPER = False
+PAPER = os.getenv("PAPER")
+PAPER = True if PAPER.lower() == "true" else False
 
 logger = setup_logger('alpaca_api', 'logs/alpaca.log')
 
@@ -21,20 +22,20 @@ def get_alpaca_percentages():
     Returns:
         dict: Dict of assets and their percent of the portfolio
     """
-    trading_client = TradingClient(os.getenv('ALPACA_API_KEY'), os.getenv('ALPACA_SECRET_KEY'), paper=PAPER)
+    trading_client = TradingClient(os.getenv('ALPACA_API_KEY'), os.getenv('ALPACA_SECRET_KEY'), paper=True)
     holdings = trading_client.get_all_positions()
     # TODO: Need to get the quantity * price to get the total value of the asset
     # Then need to get the overall value of the portfolio to figure out actual % of the portfolio
     # Collect the Assets
     assets = {}
     for asset in holdings:
-        rounded_qty = round(float(asset.qty), 2)
+        rounded_qty = round(float(asset.qty), 4)
         assets.update({asset.symbol: {"rounded_qty": rounded_qty,
                                       "qty": float(asset.qty),
                                       "current_price": float(asset.current_price),
-                                      "market_value": float(asset.current_price) * float(asset.qty)}})
+                                      "market_value": round(float(asset.current_price) * rounded_qty, 2)}})
     
-    portfolio_total = round(sum([asset["market_value"] for asset in assets.values()]), 2)
+    portfolio_total = round(sum([asset["market_value"] for asset in assets.values()]), 6)
     # Convert to percentages
     percentages = {}
     per_checksum = 0
