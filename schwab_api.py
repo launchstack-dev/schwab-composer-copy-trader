@@ -463,7 +463,4 @@ class schwab_client:
             pass
 
 if __name__ == '__main__':
-    # Used for Testing
     pass
-    # Used to fetch a token
-    # client_from_login_flow(api_key=os.getenv("SCWAHB_API_KEY"), app_secret=os.getenv("SCWAHB_SECRET_KEY"),callback_url=os.getenv("CALLBACK_URL"), token_path=os.getenv("TMP_TOKEN_PATH"))

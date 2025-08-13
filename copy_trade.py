@@ -1,11 +1,11 @@
-from alpaca_api import check_for_change, get_alpaca_percentages, save_changes
+from holdings_source import check_for_change, get_percentages, save_changes
 from logger_config import setup_logger
 from schwab_api import schwab_client
 from dotenv import load_dotenv
 import time
 import os
 
-__version__ = "2025.1.4"
+__version__ = "2025.8.13"
 
 logger = setup_logger('copy_trade', 'logs/copy_trade.log')
 
@@ -47,13 +47,15 @@ if __name__ == '__main__':
             logger.info(f"Waiting for {CHANGE_WAIT} seconds before executing trades")
             print(f"Waiting for {CHANGE_WAIT} seconds before executing trades")
             time.sleep(CHANGE_WAIT)
+            # Grab the percentages once to use for the day
+            perctanges = get_percentages()
             for account_num in os.getenv('SCHWAB_ACCOUNT_NUMS').replace(" ", "").split(","):
                 if account_num in failed_account:
                     logger.error(f"Account Num: {account_num} is in being skipped due to failure")
                     continue
                 try:
                     print(f"Buying Tickers in Account Num: {account_num}")
-                    schwab_conn.buy_tickers_for_the_day(account_num, schwab_conn.breakdown_account_by_quotes(account_num, get_alpaca_percentages()["percentages"]))
+                    schwab_conn.buy_tickers_for_the_day(account_num, schwab_conn.breakdown_account_by_quotes(account_num, perctanges["percentages"]))
                 except Exception as e:
                     logger.error(f"Account Num: {account_num} Error: {e}")
                     print(f"Account Num: {account_num} Error: {e}")
@@ -64,7 +66,7 @@ if __name__ == '__main__':
                     # Lets retry the action RETRY times
                     for i in range(RETRY):
                         try:
-                            schwab_conn.buy_tickers_for_the_day(account_num, schwab_conn.breakdown_account_by_quotes(account_num, get_alpaca_percentages()["percentages"]))
+                            schwab_conn.buy_tickers_for_the_day(account_num, schwab_conn.breakdown_account_by_quotes(account_num, perctanges["percentages"]))
                             break
                         except Exception as e:
                             logger.error(f"Account Num: {account_num} Error: {e}")
@@ -74,7 +76,7 @@ if __name__ == '__main__':
                         failed_account.add(account_num)
             
             # Record the changes locally for tomorrow
-            save_changes()
+            save_changes(perctanges)
         print("Awaiting Changes")
         time.sleep(PERIOD)
             
