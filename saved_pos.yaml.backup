@@ -1,0 +1,225 @@
+assets:
+  BIL:
+    current_price: 91.615
+    market_value: 23118.02007815
+    qty: 252.33881
+    rounded_qty: 252.34
+  BIZD:
+    current_price: 15.93
+    market_value: 183.0493998
+    qty: 11.49086
+    rounded_qty: 11.49
+  BOND:
+    current_price: 91.935
+    market_value: 8350.92583785
+    qty: 90.83511
+    rounded_qty: 90.84
+  BZQ:
+    current_price: 11.055
+    market_value: 185.4060582
+    qty: 16.77124
+    rounded_qty: 16.77
+  COKE:
+    current_price: 114.305
+    market_value: 3044.8268707
+    qty: 26.63774
+    rounded_qty: 26.64
+  COST:
+    current_price: 969.228
+    market_value: 1263.76669692
+    qty: 1.30389
+    rounded_qty: 1.3
+  EDC:
+    current_price: 42.546
+    market_value: 10886.36372334
+    qty: 255.87279
+    rounded_qty: 255.87
+  EDZ:
+    current_price: 4.925
+    market_value: 31360.51219825
+    qty: 6367.61669
+    rounded_qty: 6367.62
+  EEV:
+    current_price: 11.745
+    market_value: 176.175
+    qty: 15.0
+    rounded_qty: 15.0
+  EUM:
+    current_price: 22.395
+    market_value: 4974.21100515
+    qty: 222.11257
+    rounded_qty: 222.11
+  FNGG:
+    current_price: 223.921
+    market_value: 2687.052
+    qty: 12.0
+    rounded_qty: 12.0
+  GLD:
+    current_price: 307.258
+    market_value: 1845.3300964
+    qty: 6.0058
+    rounded_qty: 6.01
+  IAI:
+    current_price: 174.404
+    market_value: 182.00278228
+    qty: 1.04357
+    rounded_qty: 1.04
+  LLY:
+    current_price: 702.659
+    market_value: 297.18962405
+    qty: 0.42295
+    rounded_qty: 0.42
+  MO:
+    current_price: 66.013
+    market_value: 1811.78883722
+    qty: 27.44594
+    rounded_qty: 27.45
+  NAIL:
+    current_price: 81.782
+    market_value: 3664.67840806
+    qty: 44.81033
+    rounded_qty: 44.81
+  NUGT:
+    current_price: 91.74
+    market_value: 1258.9553592
+    qty: 13.72308
+    rounded_qty: 13.72
+  NVO:
+    current_price: 52.425
+    market_value: 432.32748075
+    qty: 8.24659
+    rounded_qty: 8.25
+  PGR:
+    current_price: 248.645
+    market_value: 1287.30229915
+    qty: 5.17727
+    rounded_qty: 5.18
+  QLD:
+    current_price: 127.516
+    market_value: 6029.33137704
+    qty: 47.28294
+    rounded_qty: 47.28
+  QQQ:
+    current_price: 576.937
+    market_value: 28312.80826595
+    qty: 49.07435
+    rounded_qty: 49.07
+  SOXL:
+    current_price: 27.215
+    market_value: 386.5477082
+    qty: 14.20348
+    rounded_qty: 14.2
+  SOXX:
+    current_price: 248.029
+    market_value: 180.56263171
+    qty: 0.72799
+    rounded_qty: 0.73
+  SPXL:
+    current_price: 193.031
+    market_value: 362.48133304
+    qty: 1.87784
+    rounded_qty: 1.88
+  SPYU:
+    current_price: 48.758
+    market_value: 633.854
+    qty: 13.0
+    rounded_qty: 13.0
+  SRS:
+    current_price: 48.264
+    market_value: 144.792
+    qty: 3.0
+    rounded_qty: 3.0
+  SVXY:
+    current_price: 46.964
+    market_value: 5770.16798896
+    qty: 122.86364
+    rounded_qty: 122.86
+  TECL:
+    current_price: 105.39
+    market_value: 9617.0113935
+    qty: 91.25165
+    rounded_qty: 91.25
+  TMF:
+    current_price: 36.815
+    market_value: 12138.0505511
+    qty: 329.70394
+    rounded_qty: 329.7
+  TQQQ:
+    current_price: 93.087
+    market_value: 130757.7636558
+    qty: 1404.6834
+    rounded_qty: 1404.68
+  UDOW:
+    current_price: 99.141
+    market_value: 2731.89073101
+    qty: 27.55561
+    rounded_qty: 27.56
+  UGE:
+    current_price: 18.849
+    market_value: 150.792
+    qty: 8.0
+    rounded_qty: 8.0
+  UGL:
+    current_price: 34.85
+    market_value: 15776.396355
+    qty: 452.6943
+    rounded_qty: 452.69
+  UPRO:
+    current_price: 101.663
+    market_value: 2871.90350275
+    qty: 28.24925
+    rounded_qty: 28.25
+  UUP:
+    current_price: 27.345
+    market_value: 4970.63546085
+    qty: 181.77493
+    rounded_qty: 181.77
+  VBF:
+    current_price: 15.515
+    market_value: 14692.705
+    qty: 947.0
+    rounded_qty: 947.0
+  VEGI:
+    current_price: 39.91
+    market_value: 181.2584488
+    qty: 4.54168
+    rounded_qty: 4.54
+percentages:
+  BIL: 6.94
+  BIZD: 0.05
+  BOND: 2.51
+  BZQ: 0.06
+  COKE: 0.91
+  COST: 0.38
+  EDC: 3.27
+  EDZ: 9.41
+  EEV: 0.05
+  EUM: 1.49
+  FNGG: 0.81
+  GLD: 0.55
+  IAI: 0.05
+  LLY: 0.09
+  MO: 0.54
+  NAIL: 1.1
+  NUGT: 0.38
+  NVO: 0.13
+  PGR: 0.39
+  QLD: 1.81
+  QQQ: 8.5
+  SOXL: 0.12
+  SOXX: 0.05
+  SPXL: 0.11
+  SPYU: 0.19
+  SRS: 0.04
+  SVXY: 1.73
+  TECL: 2.89
+  TMF: 3.64
+  TQQQ: 39.25
+  UDOW: 0.82
+  UGE: 0.05
+  UGL: 4.74
+  UPRO: 0.86
+  UUP: 1.49
+  VBF: 4.41
+  VEGI: 0.05
+portfolio_total: 332718.8361591799
