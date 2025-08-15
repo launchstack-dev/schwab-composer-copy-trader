@@ -1,3 +1,5 @@
+# THIS IS A WORK IN PROGRESS WITH COMPOSER'S API CHANGES
+
 # Schwab Copy Trader
 
 A Python-based copy trading system that automatically mirrors portfolio allocations from Alpaca or Composer to Schwab brokerage accounts.
